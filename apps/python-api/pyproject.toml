@@ -1,0 +1,16 @@
+[project]
+name = "python-api"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "alembic>=1.20.0",
+    "fastapi>=0.143.1",
+    "google-genai>=2.31.0",
+    "langchain>=1.4.6",
+    "openai>=3.31.0",
+    "psycopg[binary]>=3.3.6",
+    "pydantic>=2.14.1",
+    "python-dotenv>=1.2.4",
+]
