@@ -1,13 +1,17 @@
 import os
-from pathlib import path
-from urllib.parse import quote, urlencode
-
+from pathlib import Path
+from urllib.parse import quote
 
 import psycopg
 from dotenv import load_dotenv
 
-PROJECT_ROOT = path(__file__).resolve().parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
+print(PROJECT_ROOT)
 load_dotenv(PROJECT_ROOT / ".env")
+
+
+class DatabaseConnectionError(RuntimeError):
+    """Raised when the application cannot connect to PostgreSQL."""
 
 
 class Database:
@@ -17,14 +21,15 @@ class Database:
             "DATABASE_PASSWORD",
             "DATABASE_HOST",
             "DATABASE_PORT",
-         ]
+            "DATABASE_NAME",
+        ]
         config = {key: os.getenv(key) for key in required_vars}
         missing = [key for key, value in config.items() if not value]
 
         if missing:
             raise RuntimeError(
                 f"Missing environment variables: {', '.join(missing)}"
-        )
+            )
         user = quote(config["DATABASE_USER"], safe="")
         password = quote(config["DATABASE_PASSWORD"], safe="")
         host = config["DATABASE_HOST"]
@@ -33,12 +38,15 @@ class Database:
         self.DATABASE_URL = (
             f"postgresql://{user}:{password}@{host}:{port}/{name}"
         )
-        
-        if not self.DATABASE_URL:
-            raise RuntimeError("DATABASE_URL is missing from .env")
-        
+
     def get_connection(self):
-        return psycopg.connect(self.DATABASE_URL)
+        try:
+            return psycopg.connect(self.DATABASE_URL)
+        except psycopg.OperationalError as exc:
+            raise DatabaseConnectionError(
+                f"PostgreSQL connection failed: {exc}"
+            ) from exc
+
     def test_connection(self):
         with self.get_connection() as conn:
             with conn.cursor() as cur:
@@ -46,11 +54,16 @@ class Database:
                     "SELECT current_database(), current_user"
                 )
                 database, user = cur.fetchone()
-        return{"database": database, "user": user}
-            
- 
-
- 
+        return {"database": database, "user": user}
 
 
+if __name__ == "__main__":
+    import sys
 
+    try:
+        db = Database()
+        result = db.test_connection()
+    except DatabaseConnectionError as exc:
+        print(exc, file=sys.stderr)
+        raise SystemExit(1) from exc
+    print(result)
