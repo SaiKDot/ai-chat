@@ -1,26 +1,180 @@
+/* Material Symbols Outlined font is loaded via <link> in layout.tsx
+   (remote CSS @import is dropped by the Turbopack build). */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Material Design 3 dark color tokens (ported from Stitch tailwind.config) */
+  --color-primary: #4edea3;
+  --color-on-primary: #003824;
+  --color-primary-container: #10b981;
+  --color-on-primary-container: #00422b;
+  --color-primary-fixed: #6ffbbe;
+  --color-primary-fixed-dim: #4edea3;
+  --color-on-primary-fixed: #002113;
+  --color-on-primary-fixed-variant: #005236;
+  --color-inverse-primary: #006c49;
+
+  --color-secondary: #d0bcff;
+  --color-on-secondary: #3c0091;
+  --color-secondary-container: #571bc1;
+  --color-on-secondary-container: #c4abff;
+  --color-secondary-fixed: #e9ddff;
+  --color-secondary-fixed-dim: #d0bcff;
+  --color-on-secondary-fixed: #23005c;
+  --color-on-secondary-fixed-variant: #5516be;
+
+  --color-tertiary: #ffb95f;
+  --color-on-tertiary: #472a00;
+  --color-tertiary-container: #e29100;
+  --color-on-tertiary-container: #523200;
+  --color-tertiary-fixed: #ffddb8;
+  --color-tertiary-fixed-dim: #ffb95f;
+  --color-on-tertiary-fixed: #2a1700;
+  --color-on-tertiary-fixed-variant: #653e00;
+
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  --color-background: #0f131c;
+  --color-on-background: #dfe2ef;
+  --color-surface: #0f131c;
+  --color-on-surface: #dfe2ef;
+  --color-surface-dim: #0f131c;
+  --color-surface-bright: #353943;
+  --color-surface-variant: #31353f;
+  --color-on-surface-variant: #bbcabf;
+  --color-surface-tint: #4edea3;
+  --color-surface-container-lowest: #0a0e17;
+  --color-surface-container-low: #181b25;
+  --color-surface-container: #1c1f29;
+  --color-surface-container-high: #262a34;
+  --color-surface-container-highest: #31353f;
+  --color-inverse-surface: #dfe2ef;
+  --color-inverse-on-surface: #2c303a;
+
+  --color-outline: #86948a;
+  --color-outline-variant: #3c4a42;
+
+  /* Custom radii */
+  --radius: 0.125rem;
+  --radius-lg: 0.25rem;
+  --radius-xl: 0.5rem;
+
+  /* Custom spacing tokens */
+  --spacing-space-xs: 0.25rem;
+  --spacing-space-sm: 0.5rem;
+  --spacing-space-md: 0.75rem;
+  --spacing-space-lg: 1rem;
+  --spacing-space-xl: 1.5rem;
+  --spacing-gutter: 0.75rem;
+  --spacing-margin: 1rem;
+
+  /* Extra-small breakpoint used by the designs */
+  --breakpoint-xs: 25rem;
+
+  /* Typography roles */
+  --font-body-sm: var(--font-geist-sans);
+  --font-body-md: var(--font-geist-sans);
+  --font-body-lg: var(--font-geist-sans);
+  --font-headline-sm: var(--font-geist-sans);
+  --font-headline-md: var(--font-geist-sans);
+  --font-headline-lg: var(--font-geist-sans);
+  --font-code-md: var(--font-jetbrains-mono);
+  --font-code-lg: var(--font-jetbrains-mono);
+  --font-label-mono-xs: var(--font-jetbrains-mono);
+  --font-label-mono-sm: var(--font-jetbrains-mono);
+
+  --text-body-sm: 12px;
+  --text-body-sm--line-height: 17px;
+  --text-body-sm--letter-spacing: 0em;
+  --text-body-sm--font-weight: 400;
+  --text-body-md: 14px;
+  --text-body-md--line-height: 21px;
+  --text-body-md--letter-spacing: 0em;
+  --text-body-md--font-weight: 400;
+  --text-body-lg: 16px;
+  --text-body-lg--line-height: 24px;
+  --text-body-lg--letter-spacing: -0.005em;
+  --text-body-lg--font-weight: 400;
+  --text-headline-sm: 18px;
+  --text-headline-sm--line-height: 24px;
+  --text-headline-sm--letter-spacing: -0.01em;
+  --text-headline-sm--font-weight: 500;
+  --text-headline-md: 22px;
+  --text-headline-md--line-height: 28px;
+  --text-headline-md--letter-spacing: -0.015em;
+  --text-headline-md--font-weight: 600;
+  --text-headline-lg: 30px;
+  --text-headline-lg--line-height: 38px;
+  --text-headline-lg--letter-spacing: -0.02em;
+  --text-headline-lg--font-weight: 600;
+  --text-code-md: 12px;
+  --text-code-md--line-height: 18px;
+  --text-code-md--letter-spacing: 0em;
+  --text-code-md--font-weight: 400;
+  --text-code-lg: 14px;
+  --text-code-lg--line-height: 22px;
+  --text-code-lg--letter-spacing: 0em;
+  --text-code-lg--font-weight: 400;
+  --text-label-mono-xs: 10px;
+  --text-label-mono-xs--line-height: 12px;
+  --text-label-mono-xs--letter-spacing: 0.06em;
+  --text-label-mono-xs--font-weight: 600;
+  --text-label-mono-sm: 11px;
+  --text-label-mono-sm--line-height: 14px;
+  --text-label-mono-sm--letter-spacing: 0.04em;
+  --text-label-mono-sm--font-weight: 500;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* The Stitch design overrides `rounded-full` to a 0.75rem squircle */
+@layer utilities {
+  .rounded-full {
+    border-radius: 0.75rem;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer base {
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #0f131c;
+  }
+  body {
+    overscroll-behavior: none;
+    min-height: 100dvh;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.pt-safe {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+.material-symbols-outlined {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  font-variation-settings:
+    "FILL" 0,
+    "wght" 400,
+    "GRAD" 0,
+    "opsz" 24;
+  -webkit-font-smoothing: antialiased;
 }
